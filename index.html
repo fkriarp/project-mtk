@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Bunga </title>
+   <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-white h-screen overflow-hidden">
+
+   <!-- MODAL ERROR -->
+    <div class="opacity-0 absolute top-0 -translate-y-[100%] w-full mt-5 h-20 transition-all ease-in-out duration-300 " id="modal">
+      <div class="bg-red-600 text-white w-[20%] h-[50%] rounded-md flex justify-center items-center m-auto font-Poppins relative">
+         <h3>Masukkan terlebih dahulu semua data!</h3>
+      </div>
+    </div>
+
+   <div class="h-[90%] text-black flex flex-col justify-center items-center overflow-hidden">
+      <div class="bg-inherit w-[50%] p-3 rounded-xl justify-center items-center font-Poppins border border-gray-300 custom-shadow-3d max-sm:w-[94%] max-lg:w-[70%] max-md:w-[80%]">
+         <form action="" method="POST">
+            <!-- OPTION SUKU BUNGA -->
+            <div class="flex flex-col p-4 justify-center gap-2 items-center">
+               <div class="flex w-[60%] gap-3 justify-center items-end max-lg:flex-col max-lg:w-full">
+                  <select name="jenis-suku-bunga" id="jenis-suku-bunga" class="animate-top max-md:text-sm max-md:tracking-normal tracking-wider text-center hover:shadow-lg hover:shadow-gray-300 group focus:bg-[#ffe9e9] focus:text-[#101110] overflow-hidden text-opacity-50 text-sm w-full rounded-md bg-transparent text-black px-3 p-2 border border-gray-300 border-opacity-75 focus:outline-none focus:border-opacity-100 focus:border-[#f3f0f0d2] duration-300 transition-all ease-in-out max-sm:text-sm max-sm:w-full" required>
+                     <option value="" disabled selected hidden >Pilih Suku Bunga [Wajib Pilih]</option>
+                     <option value="tunggal" class="hover:shadow-lg hover:shadow-gray-300 group-focus:bg-[#101110]  group-focus:text-[#f3faf3] transition-all ease-in-out ">Suku Bunga Tunggal</option>
+                     <option value="majemuk" class="hover:shadow-lg hover:shadow-gray-300 group-focus:bg-[#101110] group-focus:text-[#f3faf3] transition-all ease-in-out ">Suku Bunga Majemuk</option>
+                  </select>
+               </div>
+               
+            </div>
+
+            <!-- TABUNGAN AWAL -->
+            <div class="flex flex-col p-4 justify-center gap-2 items-center">
+               <label for="tabungan-awal" class="animate-left-label w-[50%] max-sm:text-sm max-lg:w-full">Besar Uang Rp.</label>
+               <input type="text" placeholder="Masukkan Tabungan Awal" id="tabungan-awal" name="tabungan-awal" oninput="formatRupiah(this)" class="animate-left max-lg:w-full w-[50%] rounded-md bg-transparent text-black px-3 p-2 border-2 border-gray-300 border-opacity-50 focus:outline-none focus:border-opacity-100  focus:border-[#f3f0f0d2] placeholder:text-gray-400 focus:placeholder:text-gray-600 placeholder:text-sm duration-300 transition-all ease-in-out max-sm:text-sm max-sm:w-full">
+               
+               <!-- OPTION BUNGA -->
+               <div class="flex w-[50%] gap-3 justify-center items-end max-lg:flex-col max-lg:w-full">
+                  <div class="flex flex-col w-full">
+                     <label for="suku-bunga" class="animate-right-label max-sm:text-sm max-sm:w-full">Suku Bunga (%) </label>
+                     <input type="number" placeholder="Masukkan Suku Bunga %" id="suku-bunga" name="suku-bunga" class="animate-right rounded-md bg-transparent text-black px-3 p-2 border-2  border-gray-300 border-opacity-50 focus:outline-none focus:border-opacity-100 focus:border-[#f3f0f0d2] placeholder:text-gray-400 focus:placeholder:text-gray-600 placeholder:text-sm duration-300 transition-all ease-in-out max-sm:text-sm max-sm:w-full">
+                  </div>
+                  <select name="waktuBunga" id="waktuBunga" class="animate-right-label group focus:bg-[#e6e5e5] focus:text-[#101110] text-opacity-50 text-sm w-full rounded-md bg-transparent text-black px-3 p-2 border border-gray-300 border-opacity-75 focus:outline-none focus:border-opacity-100 focus:border-[#f3f0f0d2] duration-300 transition-all ease-in-out max-sm:text-sm max-sm:w-full">
+                     <option value="tahun" class="bg-white group-focus:bg-white group-focus:text-[#101110] transition-all ease-in-out">Per - Tahun</option>
+                     <option value="bulan" class="bg-white group-focus:bg-white group-focus:text-[#101110] transition-all ease-in-out">Per - Bulan</option>
+                  </select>
+               </div>
+               
+               <!-- OPTION PERIODE -->
+               <div class="flex w-[50%] gap-3 justify-center items-end max-lg:flex-col max-lg:w-full">
+                  <div class="flex flex-col w-full">
+                     <label for="periode-ke" class="animate-right-label max-sm:text-sm max-sm:w-full">Periode ke - </label>
+                     <input type="number" placeholder="Masukkan Periode ke" id="periode-ke" name="periode-ke" class="animate-left max-lg:w-full rounded-md bg-transparent text-black px-3 p-2 border-2  border-gray-300 border-opacity-50 focus:outline-none focus:border-opacity-100 focus:border-[#f3f0f0d2] placeholder:text-gray-400 focus:placeholder:text-gray-600 placeholder:text-sm duration-300 transition-all ease-in-out max-sm:text-sm max-sm:w-full">
+                  </div>
+                  <select name="waktuPeriode" id="waktuPeriode" class="animate-right group focus:bg-[#e6e5e5] focus:text-[#101110] text-opacity-50 text-sm w-full rounded-md bg-transparent text-black px-3 p-2 border border-gray-300 border-opacity-75 focus:outline-none focus:border-opacity-100 focus:border-[#f3f0f0d2] duration-300 transition-all ease-in-out max-sm:text-sm max-sm:w-full">
+                     <option value="tahun" class="bg-white group-focus:bg-white group-focus:text-[#101110] transition-all ease-in-out">Per - Tahun</option>
+                     <option value="bulan" class="bg-white group-focus:bg-white group-focus:text-[#101110] transition-all ease-in-out">Per - Bulan</option>
+                  </select>
+               </div>
+               
+               <!-- BUTTON CEK -->
+               <button type="button" onclick="tampil()" id="btn" class="animate-bottom hover:custom-shadow-3d max-lg:w-full block w-[50%] bg-inherit text-black font-semibold mt-2 py-2 px-5 rounded-md border border-gray-300 focus:outline-none active:bg-slate-100 active:text-black active:border-gray-400 duration-300 transition-all ease-in-out" >Cek</button>
+
+               <!-- RESULT -->
+               <div class="max-sm:w-full max-sm:text-sm w-[50%] max-lg:w-full max-lg:p-5 mt-5 bg-gray-100 rounded-md p-4 hidden" id="hasil" ></div>
+            </div>
+         </form>
+      </div>
+   </div>
+      <script src="script.js"></script>
+
+</body>
+</html>
